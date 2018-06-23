@@ -1,6 +1,6 @@
-class CreateContacts < ActiveRecord::Migration[5.1]
+class CreateBlogs < ActiveRecord::Migration[5.1]
   def change
-    create_table :contacts do |t|
+    create_table :blogs do |t|
       t.string:title
       t.text:content
     end
