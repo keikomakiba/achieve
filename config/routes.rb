@@ -11,4 +11,10 @@ Rails.application.routes.draw do
     end 
   end
 
+  resources:twitters do
+    collection do 
+        post :confirm
+    end 
+  end
+  
 end
