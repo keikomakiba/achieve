@@ -4,11 +4,11 @@ class TwittersController < ApplicationController
   def index
     @twitters = Twitter.all
   end
-  
+
   def top
     @twitters = Twitter.all
   end
-
+  
   def new
     if params[:back]
       @twitter = Twitter.new(twitter_params)

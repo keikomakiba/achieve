@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  
+  resources:tops do
+    collection do 
+        post :confirm
+    end 
+  end
+  
   resources:contacts do
       collection do 
           post :confirm
@@ -11,9 +18,11 @@ Rails.application.routes.draw do
     end 
   end
 
+
   resources:twitters do
     collection do 
-        post :confirm
+      post :confirm
+      get :top
     end 
   end
   

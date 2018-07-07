@@ -1,33 +1,27 @@
 <div class="container">
 
-  <!--<div class="alert alert-success">ツイートを投稿しました</div>-->
+  <!--<div class="alert alertsuccess">ツイートを投稿しました</div>-->
   <% if flash[:notice] %>
-    <div class="alert alert-success"><%= flash[:notice] %></div>
+    <div class="alert alertsuccess"><%= flash[:notice] %></div>
   <% end %>
   <h1>つぶやき一覧</h1>
   
 <article>
-    <div class="contents">
-        <ul>
-            <!--<li class="col-md-6">contents1</li>-->
-            <!--<li class="col-md-6">contents2</li>-->
-            
-            <table class="table table-striped">
+    <div class="container">
+        
               <% @twitters.each do |twitter| %>
-                <tr>
-                  <td><%= twitter.title %></td>
-                  <td><%= twitter.content %></td>
-                  <td><button type="submit" class="btn btn-default"><%= link_to '詳細を確認する', twitter_path(twitter.id) %></button></td>
-                  <td><button type="submit" class="btn btn-default"><%= link_to "ブログを編集する", edit_twitter_path(twitter.id) %></button></td>
-                  <td><button type="submit" class="btn btn-default"><%= link_to 'ブログを削除する', twitter_path(twitter.id), method: :delete %></button></td>
-                </tr>
+               <ul class="row">
+                  <li class="col-lg-6 col-xs-12 "><%= twitter.content %></li>
+                  <li class="col-lg-6 col-xs-12 "><%= link_to "詳細を確認する", twitter_path(twitter.id), class: 'btn btn-info'%></li>
+                  <li class="col-lg-6 col-xs-12 "><%= link_to "ブログを編集する", edit_twitter_path(twitter.id), class: 'btn btn-info'%></li>
+                  <li class="col-lg-6 col-xs-12 "><%= link_to "ブログを削除する", twitter_path(twitter.id), method: :delete , class: 'btn btn-info'%></li>
+               </ul>    
               <% end %>
-            </table>
+         
+          
             <br>
 
            <%= link_to '新しくブログを投稿する', new_twitter_path %>
-
-        </ul>
     </div>
 </article>
   </div>

@@ -10,16 +10,10 @@
 
   <header>
     <ul>
-      <li><a href="https://railstutorial-keiko5645.c9users.io/twitters/new">HOME</a></li>
-      <li><a href="https://railstutorial-keiko5645.c9users.io/twitters">つぶやき一覧</a></li>
-      <li><a href="https://railstutorial-keiko5645.c9users.io/twitters/new">新規投稿</a></li>
-      <!--<nav class="menu">-->
-      <!--    <ul class="row">-->
-      <!--        <li class="col-md-4">top</li>-->
-      <!--        <li class="col-md-4">menu1</li>-->
-      <!--        <li class="col-md-4">menu2</li>-->
-      <!--     </ul>-->
-      <!--</nav>-->
+      <li><%= link_to 'トップページ', top_twitters_path %></li>
+      <li><%= link_to 'つぶやき一覧', twitters_path %></a></li>
+      <li><%= link_to '新規投稿', new_twitter_path %></a></li>
+    
 
     </ul>
   </header>
