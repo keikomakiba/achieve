@@ -1,6 +1,6 @@
 class TwittersController < ApplicationController
     before_action :set_twitter, only: [:show, :edit, :update, :destroy] 
-    
+    before_action :log_in?, only: [:new, :edit, :show, :destroy] 
   def index
     @twitters = Twitter.all
   end
@@ -62,5 +62,12 @@ class TwittersController < ApplicationController
 
   def twitter_params
     params.require(:twitter).permit(:content)
+  end
+  
+  def log_in?
+    if current_user.blank?
+      redirect_to sessions_new_path
+    end
+    
   end
 end
