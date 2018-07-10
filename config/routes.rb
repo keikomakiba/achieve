@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
-  get 'sessions/new'
+  root to: 'twitters#top'
 
-  resources:tops do
+  resources:tops do 
     collection do 
         post :confirm
     end 

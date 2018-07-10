@@ -10,18 +10,15 @@
     <div class="container">
         
               <% @twitters.each do |twitter| %>
-               <ul class="row">
-                  <li class="col-lg-6 col-xs-12 "><%= twitter.content %></li>
-                  <li class="col-lg-6 col-xs-12 "><%= link_to "詳細を確認する", twitter_path(twitter.id), class: 'btn btn-info'%></li>
-                  <li class="col-lg-6 col-xs-12 "><%= link_to "ブログを編集する", edit_twitter_path(twitter.id), class: 'btn btn-info'%></li>
-                  <li class="col-lg-6 col-xs-12 "><%= link_to "ブログを削除する", twitter_path(twitter.id), method: :delete , class: 'btn btn-info'%></li>
+               <ul class="row col-lg-6">
+                  <li class="aaa "><%= twitter.content %></li>
+                  <li class="col-lg-4 col-xs-12 "><%= link_to "詳細を確認する", twitter_path(twitter.id), class: 'btn btn-info'%></li>
+                  <li class="col-lg-4 col-xs-12 "><%= link_to "ブログを編集する", edit_twitter_path(twitter.id), class: 'btn btn-info'%></li>
+                  <li class="col-lg-4 col-xs-12 "><%= link_to "ブログを削除する", twitter_path(twitter.id), method: :delete , class: 'btn btn-info'%></li>
                </ul>    
               <% end %>
-         
-          
-            <br>
-
-           <%= link_to '新しくブログを投稿する', new_twitter_path %>
+           
     </div>
 </article>
+<h2><%= link_to '新しくブログを投稿する', new_twitter_path %></h2>
   </div>
