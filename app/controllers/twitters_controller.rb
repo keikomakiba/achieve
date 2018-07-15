@@ -68,7 +68,7 @@ class TwittersController < ApplicationController
   
   def log_in?
     if current_user.blank?
-      redirect_to new_sessions_path
+      redirect_to new_session_path
     end
 
   end
