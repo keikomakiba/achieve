@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
     before_action :set_blog, only: [:show, :edit, :update, :destroy] 
-    
+    before_action :login_check, only: [:new, :edit, :update, :destroy]
   def index
     @blogs = Blog.all
   end
@@ -21,6 +21,8 @@ class BlogsController < ApplicationController
 
   def create
     @blog = Blog.new(blog_params)
+    @blog.user_id = current_user.id #現在ログインしているuserのidをblogのuser_idカラムに挿入する。
+  #省略
     if @blog.save
       redirect_to blogs_path, notice: "ブログを作成しました！"
     else
@@ -51,11 +53,15 @@ class BlogsController < ApplicationController
   end
 
   private
-  
+   def login_check
+     user_signed_in?
+     flash[:alert]="ログインしてください"
+     redirect_to blogs_path
+   end
   def set_blog
-  @blog = Blog.find(params[:id])
+    @blog = Blog.find(params[:id])
   end
-
+  
   def blog_params
     params.require(:blog).permit(:title, :content)
   end
