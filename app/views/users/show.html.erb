@@ -1,6 +1,10 @@
 <h1><%= @user.name %>のページ</h1>
 
 <p>メールアドレス: <%= @user.email %></p>
+<ul>お気に入りしたブログはこれだよ⬇️</ul>
+<% @favorites_blogs.each do |favorite| %>
+<li><%= favorite.content %></li>
+<% end %>
 
-<p>ブログ一覧は: <%= link_to "ここ", twitters_path %></p>
-<p>新しくブログを投稿するには: <%= link_to "ここ", new_user_path %></p>
+<p>ブログ一覧はここから <%= link_to "ここ", twitters_path %></p>
+<p>新しくブログを投稿するにはここから <%= link_to "ここ", new_twitter_path %></p>

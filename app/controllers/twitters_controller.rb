@@ -21,12 +21,14 @@ class TwittersController < ApplicationController
   
   def confirm
     @twitter = Twitter.new(twitter_params)
+    @twitter.user_id = current_user.id
     render :new if @twitter.invalid?
   end
   
 
   def create
     @twitter = Twitter.new(twitter_params)
+    @twitter.user_id = current_user.id #現在ログインしているuserのidをblogのuser_idカラムに挿入する。
     if @twitter.save
       redirect_to twitters_path, notice: "ブログを作成しました！"
     else
@@ -36,6 +38,8 @@ class TwittersController < ApplicationController
 
   def show
     @twitter = Twitter.find(params[:id])   # 重複！
+    # @favorite = current_user.favorites.find_by(twitter_id: @twitter.id)
+    @favorite = current_user.favorites.find_by(twitter_id: @twitter.id)
   end
 
   def edit
