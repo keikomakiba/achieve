@@ -7,6 +7,7 @@
   <p>本文:<%= @twitter.content %></p>
   <%= form.submit  "登録する" %>
 <% end %>
+
 <%= form_with(model: @twitter, url: new_twitter_path, local: true, method: 'get') do |form| %>
   <%= form.hidden_field :content %>
   <%= form.submit "もどる" %>

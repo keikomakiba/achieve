@@ -1,7 +1,7 @@
 class TwittersController < ApplicationController
     before_action :set_twitter, only: [:show, :edit, :update, :destroy] 
     before_action :log_in?, only: [:new, :edit, :show, :destroy] 
-    
+    before_action :set_contact, only: [:show, :edit, :update, :destroy]
     
   def index
     @twitters = Twitter.all
@@ -27,13 +27,35 @@ class TwittersController < ApplicationController
   
 
   def create
-    @twitter = Twitter.new(twitter_params)
-    @twitter.user_id = current_user.id #現在ログインしているuserのidをblogのuser_idカラムに挿入する。
-    if @twitter.save
-      redirect_to twitters_path, notice: "ブログを作成しました！"
-    else
-      render 'new'
+    # @twitter = Twitter.new(twitter_params)
+    # @twitter.user_id = current_user.id #現在ログインしているuserのidをblogのuser_idカラムに挿入する。
+    # if @twitter.save
+    #   redirect_to twitters_path, notice: "ブログを作成しました！"
+    # else
+    #   render 'new'
+    # end
+    
+    
+    # ここから追加したとこ！
+    
+    @twitter = Twitter.new(twitter_params) 
+    @twitter.user_id = current_user.id
+    respond_to do |format|
+      if @twitter.save
+        TwittersMailer.twitter_mail(@twitter).deliver 
+        binding.pry
+        format.html { redirect_to @twitter, notice: 'ブログ投稿完了しました！' }
+        format.json { render :show, status: :created, location: @twitter }
+      else
+        format.html { render :new }
+        format.json { render json: @twitter.errors, status: :unprocessable_entity }
+        
+      end
     end
+    
+    
+    
+    
   end
 
   def show
@@ -74,6 +96,16 @@ class TwittersController < ApplicationController
     if current_user.blank?
       redirect_to new_session_path
     end
+  
+  # ここから追加したとこ！
+  def set_contact  
+      @twitter = Twitter.find(params[:id])
+    end
 
+    def twitter_params
+      params.require(:twitter).permit(:name, :email, :content)
+    end
+    
+    
   end
 end

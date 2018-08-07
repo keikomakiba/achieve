@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
+  resources :contacts
   root to: 'twitters#top'
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   resources:tops do 
     collection do 
