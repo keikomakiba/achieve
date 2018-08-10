@@ -43,7 +43,7 @@ class TwittersController < ApplicationController
     respond_to do |format|
       if @twitter.save
         TwittersMailer.twitter_mail(@twitter).deliver 
-        # binding.pry
+        
         format.html { redirect_to @twitter, notice: 'ブログ投稿完了しました！' }
         format.json { render :show, status: :created, location: @twitter }
       else
