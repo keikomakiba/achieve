@@ -42,7 +42,7 @@ class TwittersController < ApplicationController
     @twitter.user_id = current_user.id
     respond_to do |format|
       if @twitter.save
-        TwitterMailer.twitter_mail(@twitter).deliver 
+        TwittersMailer.twitter_mail(@twitter).deliver 
         format.html { redirect_to @twitter, notice: 'ブログ投稿完了しました！' }
         format.json { render :show, status: :created, location: @twitter }
       else
