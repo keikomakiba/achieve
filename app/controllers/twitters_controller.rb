@@ -51,11 +51,7 @@ class TwittersController < ApplicationController
         
       end
     end
-    
-    
-    
-    
-  end
+　　end
 
   def show
     @twitter = Twitter.find(params[:id])   # 重複！
