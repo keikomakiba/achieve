@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  
+  mount_uploader :image, ImageUploader
+  
   before_validation { email.downcase! }
   has_secure_password
   has_many :favorites, dependent: :destroy
@@ -8,5 +11,6 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
   format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :password, presence: true, length: { minimum: 6 }
+  validates :image, presence: true
 end
 
