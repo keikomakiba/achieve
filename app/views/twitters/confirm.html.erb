@@ -3,12 +3,16 @@
 <%= form_with(model: @twitter, url: twitters_path, local: true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
-
+  
+  <p>画像:<%= image_tag(@twitter.image) %></p>
+  <%= form.hidden_field :image_cache %>
+  
   <p>本文:<%= @twitter.content %></p>
   <%= form.submit  "登録する" %>
 <% end %>
 
 <%= form_with(model: @twitter, url: new_twitter_path, local: true, method: 'get') do |form| %>
   <%= form.hidden_field :content %>
+  <%= form.hidden_field :image_cache %>
   <%= form.submit "もどる" %>
 <% end %>

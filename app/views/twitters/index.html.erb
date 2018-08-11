@@ -2,10 +2,9 @@
 
 <% if flash[:notice] %>
 <div class="alert alertsuccess">
-
-
-
 <% end %>
+
+
 <h1>つぶやき一覧</h1>
   
 <article>
@@ -13,7 +12,11 @@
         
     <% @twitters.each do |twitter| %>
     <ul class="row col-lg-6">
-          <li class="aaa "><%= twitter.content %></li>
+          <li class="aaa ">
+          <%= twitter.content %>
+          <%= twitter.image %>
+          </li>
+          
           <li class="col-lg-4 col-xs-12 "><%= link_to "詳細を確認する", twitter_path(twitter.id), class: 'btn btn-info'%></li>
           <%  if twitter.user_id == current_user.id %>
           <li class="col-lg-4 col-xs-12 "><%= link_to "ブログを編集する", edit_twitter_path(twitter.id), class: 'btn btn-info'%></li>

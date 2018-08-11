@@ -3,7 +3,6 @@
     <div id="error_explanation">
       <h2><%= @twitter.errors.count %>件のエラーがあります。</h2>
       <ul>
-
       <% @twitter.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
@@ -11,11 +10,19 @@
     </div>
   <% end %>
 
-  <div class="twitter_title">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
-  <%= form.submit %>
+    <div class="twitter_title">
+      <%= form.label :content %>
+      <%= form.text_field :content %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :image %>
+      <%= form.file_field :image, id: :twitter_image %>
+      <%= image_tag(@twitter.image.url) if @twitter.image.url %>
+    </div>
+    
+    <%= form.submit %>
+  
 <% end %>
 
-<%= link_to "ブログ一覧画面にもどる", twitters_path %>
+  <%= link_to "ブログ一覧画面にもどる", twitters_path %>

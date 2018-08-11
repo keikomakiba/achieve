@@ -14,6 +14,12 @@
   <div class="twitter_title">
     <%= form.label :content %>
     <%= form.text_field :content %>
+    
+    <div class="field">
+      <%= form.label :image %>
+      <%= form.file_field :image, id: :twitter_image %>
+      <%= image_tag(@twitter.image.url) if @twitter.image.url %>
+    </div>
   </div>
   <%= form.submit %>
 <% end %>

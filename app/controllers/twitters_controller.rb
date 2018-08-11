@@ -98,6 +98,6 @@ class TwittersController < ApplicationController
     end
 
     def twitter_params
-      params.require(:twitter).permit(:name, :email, :content)
+      params.require(:twitter).permit(:name, :email, :content, :image, :image_cache)
     end
 end

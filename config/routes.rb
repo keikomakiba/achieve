@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   
+  root to: 'twitters#top'
+  
   resources :feeds
   resources :contacts
-  root to: 'twitters#top'
+  
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   resources:tops do 
